@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="AllianceDivisionApp.TabbedPage1">
+  <!--Pages can be added as references or inline-->
+    <ContentPage x:Name="Chat" Title="Chat" >
+        <ContentPage.Content>
+            <StackLayout>
+                <Button x:Name="Connects"  Text="Connect" BackgroundColor="RoyalBlue" Command="{Binding ConnectCommand}" />
+                <ScrollView>
+                    <StackLayout x:Name="ChatArea" Orientation="Vertical">
+                    
+                    </StackLayout>
+                </ScrollView>
+                <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand"  >
+                    <Editor x:Name="MessageEditor" Placeholder="Type a message..." VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" AutoSize="TextChanges"  />
+                    <Button x:Name="Send"  Text="Send" BackgroundColor="RoyalBlue" />
+                </StackLayout>
+            </StackLayout>
+
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage x:Name="stats" Title="Your stats" />
+    <ContentPage x:Name="events" Title="Upcoming events" >
+        <ContentPage.Content>
+            <StackLayout>
+                <Label Text="No events, fake friends" VerticalOptions="StartAndExpand" HorizontalOptions="Center" FontSize="Title"/>
+            </StackLayout> 
+            
+        </ContentPage.Content>
+        
+    </ContentPage>         
+               
+               
+  
+</TabbedPage>

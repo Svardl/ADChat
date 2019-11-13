@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Text="clr-namespace:System.Text;assembly=netstandard"
+             mc:Ignorable="d"
+             x:Class="AllianceDivisionApp.MainPage">
+
+    <StackLayout Padding="10" Margin="30,20,20,10">
+        <!-- Place new controls here -->
+        <Label Text="Alliance Division App" HorizontalOptions="Center"
+               VerticalOptions= "StartAndExpand" TextColor="RoyalBlue" FontAttributes="Bold" FontSize="Title" />
+        <Label Text= "Who are you?" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" 
+           FontSize="Large"    />
+
+        <Picker Title="Name" x:Name="namePicker">
+			<Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Niclas</x:String>
+                    <x:String>Julia</x:String>
+                    <x:String>Felix</x:String>
+                    <x:String>Harald</x:String>
+                    <x:String>Kevin</x:String>
+                    <x:String>Erik</x:String>
+                    <x:String>Emil</x:String>
+                    <x:String>Andreas</x:String>
+                    <x:String>Isak</x:String>
+                    <x:String>Ullberg</x:String>
+                    <x:String>Alex</x:String>
+
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <Editor x:Name="PasswordEditor" Placeholder="Password"/>
+        <Button Text="Login" FontSize="Medium" BackgroundColor="RoyalBlue" Clicked="Login_Clicked" />
+    </StackLayout>
+
+</ContentPage>
