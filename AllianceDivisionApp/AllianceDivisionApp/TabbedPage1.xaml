@@ -9,7 +9,7 @@
     <ContentPage x:Name="Chat" Title="Chat" >
         <ContentPage.Content>
             <StackLayout>
-                <Button x:Name="Connects"  Text="Connect" BackgroundColor="RoyalBlue" Command="{Binding ConnectCommand}" />
+                <Button x:Name="ConnectsBtn"  Text="Connect" BackgroundColor="RoyalBlue" Command="{Binding ConnectCommand}" />
                 <ScrollView>
                     <StackLayout x:Name="ChatArea" Orientation="Vertical">
                     
