@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AllianceDivisionApp {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
+
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage {
 
@@ -36,7 +35,7 @@ namespace AllianceDivisionApp {
                 password = "Hello";
             }
 
-            if (person!=null || namepass[person].Equals(password) ) {
+            if (person!=null && namepass[person].Equals(password) ) {
                 DisplayAlert("Login Status", "Success!", "Okay");
                 App.Current.MainPage = new TabbedPage1(person);
             }

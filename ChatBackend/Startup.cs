@@ -23,7 +23,6 @@ namespace ChatBackend {
                 app.UseDeveloperExceptionPage();
             }
              app.UseRouting();
-            app.Map
 
             app.UseEndpoints(endpoint =>
             {

@@ -8,25 +8,23 @@
     ".NETCoreApp,Version=v3.0": []
   },
   "packageFolders": {
-    "C:\\Users\\nirrr\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\nisv\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nirrr\\source\\repos\\ChatBackend\\ChatBackend.csproj",
+      "projectUniqueName": "C:\\Users\\nisv\\Documents\\ADChat\\ChatBackend\\ChatBackend.csproj",
       "projectName": "ChatBackend",
-      "projectPath": "C:\\Users\\nirrr\\source\\repos\\ChatBackend\\ChatBackend.csproj",
-      "packagesPath": "C:\\Users\\nirrr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nirrr\\source\\repos\\ChatBackend\\obj\\",
+      "projectPath": "C:\\Users\\nisv\\Documents\\ADChat\\ChatBackend\\ChatBackend.csproj",
+      "packagesPath": "C:\\Users\\nisv\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nisv\\Documents\\ADChat\\ChatBackend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\nirrr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nisv\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
