@@ -9,14 +9,14 @@
     <ContentPage x:Name="Chat" Title="Chat" >
         <ContentPage.Content>
             <StackLayout>
-                <Button x:Name="ConnectsBtn"  Text="Connect" BackgroundColor="RoyalBlue" Command="{Binding ConnectCommand}" />
-                <ScrollView>
+                <Button x:Name="ConnectsBtn"  Text="Connect" BackgroundColor="RoyalBlue"  />
+                <ScrollView x:Name="ScrollWindow">
                     <StackLayout x:Name="ChatArea" Orientation="Vertical">
                     
                     </StackLayout>
                 </ScrollView>
                 <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand"  >
-                    <Editor x:Name="MessageEditor" Placeholder="Type a message..." VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" AutoSize="TextChanges"  />
+                    <Editor x:Name="MessageEditor" Placeholder="Type a message..." VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" AutoSize="Disabled"  />
                     <Button x:Name="Send"  Text="Send" BackgroundColor="RoyalBlue" />
                 </StackLayout>
             </StackLayout>
@@ -28,7 +28,22 @@
     <ContentPage x:Name="events" Title="Upcoming events" >
         <ContentPage.Content>
             <StackLayout>
-                <Label Text="No events, fake friends" VerticalOptions="StartAndExpand" HorizontalOptions="Center" FontSize="Title"/>
+                <Button x:Name="RefreshBtn" Text="Refresh" BackgroundColor="RoyalBlue" VerticalOptions="StartAndExpand"/>
+                <Label x:Name="noFriends" Text="No events, fake friends" VerticalOptions="StartAndExpand" HorizontalOptions="Center" FontSize="Title"/>
+               
+                <StackLayout x:Name="EventsArea">
+                    <ScrollView x:Name="ScrollWindow2">
+                    
+                    </ScrollView>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" BackgroundColor="RoyalBlue"  >
+                    <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="Center" >
+                        <DatePicker x:Name="ChosenDate" Format="D"  />
+                        <TimePicker x:Name="ChosenTime" Format="HH:mm" />
+                    </StackLayout >
+                    <Editor x:Name="EventEditor" Placeholder="Describe the event" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" AutoSize="Disabled"  />
+                    <Button x:Name="AddBtn"  Text="Add" BackgroundColor="RoyalBlue" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
             </StackLayout> 
             
         </ContentPage.Content>
