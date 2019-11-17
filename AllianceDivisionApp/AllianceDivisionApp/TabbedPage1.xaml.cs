@@ -1,24 +1,32 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
-
+using Plugin.SimpleAudioPlayer;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Reflection;
 
 namespace AllianceDivisionApp {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TabbedPage1 : TabbedPage {
+        ISimpleAudioPlayer player;
+
         bool alreadyLoaded = false;
         string name;
         HubConnection hubConnection;
         bool isConnected = false;
         System.Drawing.Color cellColor;
 
+        
         public TabbedPage1(string name) {
             InitializeComponent();
+            player = CrossSimpleAudioPlayer.CreateSimpleAudioPlayer();
+
+
             Send.Clicked += Send_Clicked;
             this.name = name;
             Random rand = new Random();
@@ -58,10 +66,16 @@ namespace AllianceDivisionApp {
             });
 
             hubConnection.On<Message>("AddEvent", (evObj) => {
-                Label test = new Label() {Text=evObj.time.ToString()};
+                Label test = new Label() {Text=DateToString(evObj.time)};
                 noFriends.Text = "";
                 EventsArea.Children.Add(test);
             });
+        }
+
+        private string DateToString(DateTime time) {
+            
+
+            return (time.Date.ToLongDateString()+" "+time.Hour+":"+time.Minute);
         }
 
         async Task Connect() {
@@ -103,6 +117,10 @@ namespace AllianceDivisionApp {
 
         async Task SendMessage(string user, string message) {
             if (isConnected) {
+                var stream = GetStreamFromFile("sent.mp3");
+                player.Load(stream);
+                player.Play();
+
                 await hubConnection.InvokeAsync("SendMessage", user, message, (int)cellColor.R, (int)cellColor.G, (int)cellColor.B);
             }
             else {
@@ -170,7 +188,12 @@ namespace AllianceDivisionApp {
 
             return col;
         }
-        
+        Stream GetStreamFromFile(string filename) {
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+            var stream = assembly.GetManifestResourceStream("AllianceDivisionApp." + filename);
+            return stream;
+        }
+
 
     }
     public class Message {

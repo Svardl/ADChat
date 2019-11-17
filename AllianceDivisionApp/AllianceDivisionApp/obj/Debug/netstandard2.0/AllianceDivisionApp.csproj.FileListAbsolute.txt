@@ -35,8 +35,8 @@ C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debu
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\TabbedPage1.xaml.g.cs
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\AllianceDivisionApp.AssemblyInfoInputs.cache
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\AllianceDivisionApp.AssemblyInfo.cs
-C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\AllianceDivisionApp.dll
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\ref\AllianceDivisionApp.dll
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\AllianceDivisionApp.pdb
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\AllianceDivisionApp.csprojAssemblyReference.cache
+C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\XamlC.stamp

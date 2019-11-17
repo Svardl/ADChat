@@ -22,6 +22,8 @@ C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\Microsoft.Extensions.Primitives.dll
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\Mono.Android.dll
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\mscorlib.dll
+C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\Plugin.SimpleAudioPlayer.Abstractions.dll
+C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\Plugin.SimpleAudioPlayer.dll
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Buffers.dll
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Core.dll
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.dll
@@ -89,5 +91,6 @@ C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Runtime.Serialization.dll
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.ServiceModel.Internals.dll
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Web.Services.dll
+C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.IO.dll
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\Mono.Security.dll
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Threading.Tasks.Extensions.dll

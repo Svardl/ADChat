@@ -321,6 +321,17 @@
           "lib/netstandard2.0/System.Threading.Channels.dll": {}
         }
       },
+      "Xam.Plugin.SimpleAudioPlayer/1.3.1": {
+        "type": "package",
+        "compile": {
+          "lib/MonoAndroid10/Plugin.SimpleAudioPlayer.Abstractions.dll": {},
+          "lib/MonoAndroid10/Plugin.SimpleAudioPlayer.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/Plugin.SimpleAudioPlayer.Abstractions.dll": {},
+          "lib/MonoAndroid10/Plugin.SimpleAudioPlayer.dll": {}
+        }
+      },
       "Xamarin.Android.Arch.Core.Common/1.1.1.3": {
         "type": "package",
         "dependencies": {
@@ -1115,8 +1126,9 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Microsoft.AspNetCore.SignalR.Client": "3.0.0",
+          "Xam.Plugin.SimpleAudioPlayer": "1.3.1",
           "Xamarin.Essentials": "1.3.1",
-          "Xamarin.Forms": "4.3.0.947036"
+          "Xamarin.Forms": "4.3.0.991211"
         },
         "compile": {
           "bin/placeholder/AllianceDivisionApp.dll": {}
@@ -1700,6 +1712,49 @@
         "system.threading.channels.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "Xam.Plugin.SimpleAudioPlayer/1.3.1": {
+      "sha512": "La40CN/Inhd3ewZeNZUGbzgOAt2Oio3/fyFlzVbeExyuhywtsRaodhRTnIX8IYOGvA/gqEznQw/Ws7PZxTekig==",
+      "type": "package",
+      "path": "xam.plugin.simpleaudioplayer/1.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10/Plugin.SimpleAudioPlayer.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.SimpleAudioPlayer.Abstractions.pdb",
+        "lib/MonoAndroid10/Plugin.SimpleAudioPlayer.XML",
+        "lib/MonoAndroid10/Plugin.SimpleAudioPlayer.dll",
+        "lib/MonoAndroid10/Plugin.SimpleAudioPlayer.pdb",
+        "lib/UAP10/Plugin.SimpleAudioPlayer.Abstractions.dll",
+        "lib/UAP10/Plugin.SimpleAudioPlayer.Abstractions.pdb",
+        "lib/UAP10/Plugin.SimpleAudioPlayer.dll",
+        "lib/UAP10/Plugin.SimpleAudioPlayer.pdb",
+        "lib/UAP10/Plugin.SimpleAudioPlayer.pri",
+        "lib/UAP10/Plugin.SimpleAudioPlayer.xml",
+        "lib/Xamarin.Mac20/Plugin.SimpleAudioPlayer.Abstractions.dll",
+        "lib/Xamarin.Mac20/Plugin.SimpleAudioPlayer.Abstractions.pdb",
+        "lib/Xamarin.Mac20/Plugin.SimpleAudioPlayer.dll",
+        "lib/Xamarin.Mac20/Plugin.SimpleAudioPlayer.xml",
+        "lib/Xamarin.iOS10/Plugin.SimpleAudioPlayer.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.SimpleAudioPlayer.Abstractions.pdb",
+        "lib/Xamarin.iOS10/Plugin.SimpleAudioPlayer.XML",
+        "lib/Xamarin.iOS10/Plugin.SimpleAudioPlayer.dll",
+        "lib/Xamarintvos/Plugin.SimpleAudioPlayer.Abstractions.dll",
+        "lib/Xamarintvos/Plugin.SimpleAudioPlayer.Abstractions.pdb",
+        "lib/Xamarintvos/Plugin.SimpleAudioPlayer.dll",
+        "lib/Xamarintvos/Plugin.SimpleAudioPlayer.xml",
+        "lib/net45/Plugin.SimpleAudioPlayer.Abstractions.dll",
+        "lib/net45/Plugin.SimpleAudioPlayer.Abstractions.pdb",
+        "lib/net45/Plugin.SimpleAudioPlayer.WPF.dll",
+        "lib/net45/Plugin.SimpleAudioPlayer.WPF.pdb",
+        "lib/netstandard1.0/Plugin.SimpleAudioPlayer.Abstractions.dll",
+        "lib/netstandard1.0/Plugin.SimpleAudioPlayer.Abstractions.pdb",
+        "lib/netstandard1.0/Plugin.SimpleAudioPlayer.deps.json",
+        "lib/netstandard1.0/Plugin.SimpleAudioPlayer.dll",
+        "lib/netstandard1.0/Plugin.SimpleAudioPlayer.pdb",
+        "xam.plugin.simpleaudioplayer.1.3.1.nupkg.sha512",
+        "xam.plugin.simpleaudioplayer.nuspec"
       ]
     },
     "Xamarin.Android.Arch.Core.Common/1.1.1.3": {
@@ -2766,6 +2821,7 @@
     "MonoAndroid,Version=v9.0": [
       "AllianceDivisionApp >= 1.0.0",
       "Microsoft.AspNetCore.SignalR.Client.Core >= 3.0.0",
+      "Xam.Plugin.SimpleAudioPlayer >= 1.3.1",
       "Xamarin.Android.Support.Core.Utils >= 28.0.0.3",
       "Xamarin.Essentials >= 1.3.1",
       "Xamarin.Forms >= 4.3.0.947036"
@@ -2817,6 +2873,10 @@
             "target": "Package",
             "version": "[3.0.0, )"
           },
+          "Xam.Plugin.SimpleAudioPlayer": {
+            "target": "Package",
+            "version": "[1.3.1, )"
+          },
           "Xamarin.Android.Support.Core.Utils": {
             "target": "Package",
             "version": "[28.0.0.3, )"
@@ -2832,5 +2892,17 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Xamarin.Forms from 4.3.0.991211 to 4.3.0.947036. Reference the package directly from the project to select a different version. \r\n AllianceDivisionApp.Android -> AllianceDivisionApp -> Xamarin.Forms (>= 4.3.0.991211) \r\n AllianceDivisionApp.Android -> Xamarin.Forms (>= 4.3.0.947036)",
+      "libraryId": "Xamarin.Forms",
+      "targetGraphs": [
+        "MonoAndroid,Version=v9.0"
+      ]
+    }
+  ]
 }
