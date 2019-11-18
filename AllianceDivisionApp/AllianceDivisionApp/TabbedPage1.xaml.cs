@@ -68,14 +68,16 @@ namespace AllianceDivisionApp {
             hubConnection.On<Message>("AddEvent", (evObj) => {
                 Label test = new Label() {Text=DateToString(evObj.time)};
                 noFriends.Text = "";
-                EventsArea.Children.Add(test);
+
+                createEventCell(evObj.author, evObj.message, DateToString(evObj.time), Color.DarkBlue);
+               // EventsArea.Children.Add(test);
             });
         }
 
         private string DateToString(DateTime time) {
-            
-
-            return (time.Date.ToLongDateString()+" "+time.Hour+":"+time.Minute);
+            string minute = time.Minute < 10 ? minute = "0" + time.Minute.ToString() : time.Minute.ToString();
+           
+            return (time.Date.ToLongDateString()+" "+time.Hour+":"+minute);
         }
 
         async Task Connect() {
@@ -109,7 +111,7 @@ namespace AllianceDivisionApp {
                 ConnectsBtn.Text = "Connect";
             }
             catch {
-                PutOnScreen(null, "Could not disconnect, that's too bad");
+                PutOnScreen(null, "Could not disconnect, that's too bad honestly");
 
             }
         }
@@ -151,7 +153,12 @@ namespace AllianceDivisionApp {
             if (!string.IsNullOrEmpty(EventEditor.Text) && isConnected) {
                 DateTime ba = new DateTime(ChosenDate.Date.Year, ChosenDate.Date.Month, ChosenDate.Date.Day, ChosenTime.Time.Hours, ChosenTime.Time.Minutes, 0);
 
-                await hubConnection.InvokeAsync("AddEvent", name, EventEditor.Text, ba);
+                if (DateTime.Compare(ba, DateTime.Now) < 0) {
+                    await DisplayAlert("Event warning", "Can't choose a date that has already passed my dude", "I'm the dum dum");
+                }
+                else{
+                    await hubConnection.InvokeAsync("AddEvent", name, EventEditor.Text, ba);
+                }
             }
         
         }
@@ -171,10 +178,35 @@ namespace AllianceDivisionApp {
                 MessageFrame.HorizontalOptions = LayoutOptions.EndAndExpand;
                 MessageFrame.Margin = new Thickness(70, 10, 10, 10);
             }
-
             MessageEditor.Text = "";
 
             ChatArea.Children.Add(MessageFrame);
+        }
+        private void createEventCell(string user, string message, string dateString, System.Drawing.Color color)
+        {
+
+            Label MessageText = new Label() { FontSize = 18, Text = message, HorizontalTextAlignment = TextAlignment.Center , TextColor= Color.White};
+            Label DateLab = new Label() { FontSize = 20, Text = dateString, HorizontalTextAlignment = TextAlignment.Center, TextColor= Color.White };
+
+            StackLayout sl = new StackLayout(){
+                HorizontalOptions= LayoutOptions.CenterAndExpand, 
+                VerticalOptions= LayoutOptions.CenterAndExpand, 
+                Padding=10
+            };
+            sl.Children.Add(DateLab);
+            sl.Children.Add(MessageText);
+
+            Frame EventFrame = new Frame()
+            {
+                BackgroundColor = color,
+                Padding = 3,
+                HasShadow = true,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                Content = sl,
+            };
+
+            EventsArea.Children.Add(EventFrame);
 
         }
         private System.Drawing.Color GenColor() {

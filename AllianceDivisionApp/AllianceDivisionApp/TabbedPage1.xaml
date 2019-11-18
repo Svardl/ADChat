@@ -28,14 +28,14 @@
     <ContentPage x:Name="events" Title="Upcoming events" >
         <ContentPage.Content>
             <StackLayout>
-                <Button x:Name="RefreshBtn" Text="Refresh" BackgroundColor="RoyalBlue" VerticalOptions="StartAndExpand"/>
-                <Label x:Name="noFriends" Text="No events, fake friends" VerticalOptions="StartAndExpand" HorizontalOptions="Center" FontSize="Title"/>
-               
-                <StackLayout x:Name="EventsArea">
-                    <ScrollView x:Name="ScrollWindow2">
+                <Button x:Name="RefreshBtn" Text="Refresh" BackgroundColor="RoyalBlue" VerticalOptions="Start"/>
+                <Label x:Name="noFriends" Text="No events, fake friends" VerticalOptions="Start" HorizontalOptions="Center" FontSize="Title"/>
+                <ScrollView x:Name="ScrollWindow2" VerticalOptions="StartAndExpand">
+                    <StackLayout x:Name="EventsArea" VerticalOptions="StartAndExpand">
                     
-                    </ScrollView>
-                </StackLayout>
+                  
+                    </StackLayout>
+                </ScrollView>
                 <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" BackgroundColor="RoyalBlue"  >
                     <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="Center" >
                         <DatePicker x:Name="ChosenDate" Format="D"  />

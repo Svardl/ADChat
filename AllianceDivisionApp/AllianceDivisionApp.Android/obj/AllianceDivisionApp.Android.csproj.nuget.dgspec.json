@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nirrr\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp.Android\\AllianceDivisionApp.Android.csproj": {}
+    "C:\\Users\\nisv\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp.Android\\AllianceDivisionApp.Android.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nirrr\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp.Android\\AllianceDivisionApp.Android.csproj": {
+    "C:\\Users\\nisv\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp.Android\\AllianceDivisionApp.Android.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nirrr\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp.Android\\AllianceDivisionApp.Android.csproj",
+        "projectUniqueName": "C:\\Users\\nisv\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp.Android\\AllianceDivisionApp.Android.csproj",
         "projectName": "AllianceDivisionApp.Android",
-        "projectPath": "C:\\Users\\nirrr\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp.Android\\AllianceDivisionApp.Android.csproj",
-        "packagesPath": "C:\\Users\\nirrr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nirrr\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp.Android\\obj\\",
+        "projectPath": "C:\\Users\\nisv\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp.Android\\AllianceDivisionApp.Android.csproj",
+        "packagesPath": "C:\\Users\\nisv\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nisv\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp.Android\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\nirrr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nisv\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -32,8 +32,8 @@
         "frameworks": {
           "monoandroid90": {
             "projectReferences": {
-              "C:\\Users\\nirrr\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp\\AllianceDivisionApp.csproj": {
-                "projectPath": "C:\\Users\\nirrr\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp\\AllianceDivisionApp.csproj"
+              "C:\\Users\\nisv\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp\\AllianceDivisionApp.csproj": {
+                "projectPath": "C:\\Users\\nisv\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp\\AllianceDivisionApp.csproj"
               }
             }
           }
@@ -66,21 +66,20 @@
         }
       }
     },
-    "C:\\Users\\nirrr\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp\\AllianceDivisionApp.csproj": {
+    "C:\\Users\\nisv\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp\\AllianceDivisionApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nirrr\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp\\AllianceDivisionApp.csproj",
+        "projectUniqueName": "C:\\Users\\nisv\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp\\AllianceDivisionApp.csproj",
         "projectName": "AllianceDivisionApp",
-        "projectPath": "C:\\Users\\nirrr\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp\\AllianceDivisionApp.csproj",
-        "packagesPath": "C:\\Users\\nirrr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nirrr\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp\\obj\\",
+        "projectPath": "C:\\Users\\nisv\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp\\AllianceDivisionApp.csproj",
+        "packagesPath": "C:\\Users\\nisv\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nisv\\Documents\\ADChat\\AllianceDivisionApp\\AllianceDivisionApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\nirrr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nisv\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
