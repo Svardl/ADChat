@@ -17,16 +17,16 @@ namespace AllianceDivisionApp {
     public partial class MainPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Picker namePicker;
+        private global::AllianceDivisionApp.BorderlessPicker namePicker;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Editor PasswordEditor;
+        private global::AllianceDivisionApp.BorderlessEditor PasswordEditor;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(MainPage));
-            namePicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Picker>(this, "namePicker");
-            PasswordEditor = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Editor>(this, "PasswordEditor");
+            namePicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::AllianceDivisionApp.BorderlessPicker>(this, "namePicker");
+            PasswordEditor = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::AllianceDivisionApp.BorderlessEditor>(this, "PasswordEditor");
         }
     }
 }

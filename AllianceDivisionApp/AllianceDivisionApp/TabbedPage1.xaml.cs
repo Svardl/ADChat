@@ -9,6 +9,8 @@ using Plugin.SimpleAudioPlayer;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Reflection;
+using System.Collections.ObjectModel;
+using Rg.Plugins.Popup.Services;
 
 namespace AllianceDivisionApp {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -20,13 +22,23 @@ namespace AllianceDivisionApp {
         HubConnection hubConnection;
         bool isConnected = false;
         System.Drawing.Color cellColor;
-
+        //public IList<string> activeUsers { get; set; }
+        public ObservableCollection<OnlineUser> ObActiveUsers = new ObservableCollection<OnlineUser>();
+        PopUpForm popupRef;
         
+
         public TabbedPage1(string name) {
             InitializeComponent();
+            //Rg.Plugins.Popup.Popup.Init();
+            var clr = Color.FromHex("#4A5B64");
+            this.BarBackgroundColor = clr;
+            this.BindingContext = this;
+            
             player = CrossSimpleAudioPlayer.CreateSimpleAudioPlayer();
 
+            CurrentPage = Children[1];
 
+            Children[0].Appearing += UpdateOnline;
             Send.Clicked += Send_Clicked;
             this.name = name;
             Random rand = new Random();
@@ -34,10 +46,28 @@ namespace AllianceDivisionApp {
             cellColor = GenColor(); 
                 
             ConnectsBtn.Clicked += toggleBtn;
-            AddBtn.Clicked += AddEvent;
+           
+           //AddBtn.Clicked += AddEvent;
 
             hubConnection = new HubConnectionBuilder().WithUrl($"https://backboy20191115101049.azurewebsites.net/chatHub").Build();
+            //activeUsers = new List<string>();
+
             HandleConnections();
+        }
+        private void UpdateOnline(object sender, EventArgs e) {
+
+            List<OnlineUser> temp = new List<OnlineUser>();
+            foreach (var onlineUser in ObActiveUsers) {
+                temp.Add(onlineUser);
+            }
+            ObActiveUsers = null;
+            ObActiveUsers = new ObservableCollection<OnlineUser>();
+            OnlineList.ItemsSource = ObActiveUsers;
+
+            foreach (var entry in temp) {
+                entry.setDateString();
+                ObActiveUsers.Add(entry);
+            }
         }
         private void HandleConnections() {
             hubConnection.On<string>("JoinChat", (user) => {
@@ -65,15 +95,46 @@ namespace AllianceDivisionApp {
                 }
             });
 
-            hubConnection.On<Message>("AddEvent", (evObj) => {
+            hubConnection.On<Message, int>("AddEvent", (evObj, index) => {
                 Label test = new Label() {Text=DateToString(evObj.time)};
                 noFriends.Text = "";
+                Frame frame = createEventCell(evObj.author, evObj.message, evObj.time, Color.DarkBlue);
+                EventsArea.Children.Insert(index ,frame);
+            });
 
-                createEventCell(evObj.author, evObj.message, DateToString(evObj.time), Color.DarkBlue);
-               // EventsArea.Children.Add(test);
+            hubConnection.On<List<Message>, bool, Message>("activeUserList", (activeUsers, added, who) => {
+
+                if (added){
+                    addToOnlineTab(activeUsers, who);
+                }
+                else {
+                    removeFromOnlineTab(activeUsers,who);
+                }
             });
         }
+        private void addToOnlineTab(List<Message> active, Message user) {
+            if (user.author.Equals(name)) {
 
+                foreach (var person in active) {
+                    OnlineUser adding = new OnlineUser() {name=person.author, comment="none", onlineSince = person.time};
+                    adding.setDateString();
+                    ObActiveUsers.Add(adding);
+                }
+                OnlineList.ItemsSource = ObActiveUsers;
+            }
+            else {
+                OnlineUser adding = new OnlineUser() {name = user.author, comment = "none", onlineSince=user.time};
+                adding.setDateString();
+                ObActiveUsers.Add(adding);
+            }
+        }
+        private void removeFromOnlineTab(List<Message> active, Message user){
+            DisplayAlert("Removed",  user+" logged out", "okay");
+            OnlineUser removing = ObActiveUsers.FirstOrDefault(person => person.name.Equals(user.author));
+            if (removing != null) {
+                ObActiveUsers.Remove(removing);
+            }
+        }
         private string DateToString(DateTime time) {
             string minute = time.Minute < 10 ? minute = "0" + time.Minute.ToString() : time.Minute.ToString();
            
@@ -83,7 +144,7 @@ namespace AllianceDivisionApp {
         async Task Connect() {
             try {
                 await hubConnection.StartAsync();
-                await hubConnection.InvokeAsync("JoinChat", name, hubConnection.ConnectionId);
+                await hubConnection.InvokeAsync("JoinChat", name);
                 isConnected = true;
                 ConnectsBtn.BackgroundColor = Color.DarkRed;
                 ConnectsBtn.Text = "Disconnect";
@@ -100,7 +161,6 @@ namespace AllianceDivisionApp {
             else {
                 await Connect();
             }
-
         }
         async Task Disconnect() {
             try {
@@ -112,10 +172,8 @@ namespace AllianceDivisionApp {
             }
             catch {
                 PutOnScreen(null, "Could not disconnect, that's too bad honestly");
-
             }
         }
-       
 
         async Task SendMessage(string user, string message) {
             if (isConnected) {
@@ -147,20 +205,20 @@ namespace AllianceDivisionApp {
             LabMessage.HorizontalTextAlignment = TextAlignment.Center;
             MessageEditor.Text = "";
             ChatArea.Children.Add(LabMessage);
-
         }
+
         private async void AddEvent(object sender, EventArgs e) {
-            if (!string.IsNullOrEmpty(EventEditor.Text) && isConnected) {
-                DateTime ba = new DateTime(ChosenDate.Date.Year, ChosenDate.Date.Month, ChosenDate.Date.Day, ChosenTime.Time.Hours, ChosenTime.Time.Minutes, 0);
+            if (!string.IsNullOrEmpty(popupRef.GetEditor().Text) && isConnected) {
+                DateTime ba = new DateTime(popupRef.GetChosenDate().Date.Year, popupRef.GetChosenDate().Date.Month, popupRef.GetChosenDate().Date.Day, popupRef.GetChosenTime().Time.Hours, popupRef.GetChosenTime().Time.Minutes, 0);
 
                 if (DateTime.Compare(ba, DateTime.Now) < 0) {
                     await DisplayAlert("Event warning", "Can't choose a date that has already passed my dude", "I'm the dum dum");
                 }
                 else{
-                    await hubConnection.InvokeAsync("AddEvent", name, EventEditor.Text, ba);
+                    await PopupNavigation.Instance.PopAsync(true);
+                    await hubConnection.InvokeAsync("AddEvent", name, popupRef.GetEditor().Text, ba);
                 }
             }
-        
         }
 
         private void createMessageCell(string user, string message, System.Drawing.Color color) {
@@ -182,32 +240,60 @@ namespace AllianceDivisionApp {
 
             ChatArea.Children.Add(MessageFrame);
         }
-        private void createEventCell(string user, string message, string dateString, System.Drawing.Color color)
+        private Frame createEventCell(string user, string title, DateTime time, System.Drawing.Color color)
         {
+            string dateString = DateToString(time);
+            string shortString= String.Format("{0:m}", time);
+            Label MessageText = new Label() { FontSize = 18, Text = title, HorizontalTextAlignment = TextAlignment.Center , TextColor= Color.White, Margin= new Thickness(0,24,0,32)};
+            Label DateLab = new Label() { FontSize = 18, Text = shortString, HorizontalTextAlignment = TextAlignment.Center, TextColor= Color.White, Margin=new Thickness(0,16,0,16) };
 
-            Label MessageText = new Label() { FontSize = 18, Text = message, HorizontalTextAlignment = TextAlignment.Center , TextColor= Color.White};
-            Label DateLab = new Label() { FontSize = 20, Text = dateString, HorizontalTextAlignment = TextAlignment.Center, TextColor= Color.White };
+           
+            Color bodyCol = Color.FromHex("#5A5A5A");
+            Color headerCOl = Color.FromHex("#4BA2C7");
+
+            StackLayout header = new StackLayout() {
+                VerticalOptions = LayoutOptions.Start,
+                HorizontalOptions= LayoutOptions.Fill,
+            
+                BackgroundColor = headerCOl,
+            };
+            header.Children.Add(DateLab);
+
+            StackLayout body = new StackLayout() {BackgroundColor=bodyCol, HorizontalOptions=LayoutOptions.FillAndExpand, VerticalOptions= LayoutOptions.Start };
+            body.Children.Add(MessageText);
 
             StackLayout sl = new StackLayout(){
-                HorizontalOptions= LayoutOptions.CenterAndExpand, 
+                HorizontalOptions= LayoutOptions.FillAndExpand, 
                 VerticalOptions= LayoutOptions.CenterAndExpand, 
-                Padding=10
             };
-            sl.Children.Add(DateLab);
-            sl.Children.Add(MessageText);
+            sl.Children.Add(header);
+            sl.Children.Add(body);
 
-            Frame EventFrame = new Frame()
-            {
-                BackgroundColor = color,
-                Padding = 3,
-                HasShadow = true,
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
+
+            Frame EventFrame = new Frame() {
+                BorderColor = headerCOl,
+                CornerRadius = 8,
+                IsClippedToBounds=true,
+                BackgroundColor = bodyCol,
+                Padding = 0,
+                HasShadow = false,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 Content = sl,
+
             };
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += (s, e) => {
 
-            EventsArea.Children.Add(EventFrame);
+                Navigation.PushModalAsync(new EventPage(title, time));
 
+            };
+            EventFrame.GestureRecognizers.Add(tapGestureRecognizer);
+
+            Frame wrapppingFrame = new Frame() { HasShadow = false, CornerRadius = 6, Padding = 2,
+                BackgroundColor = headerCOl, Content = EventFrame, Margin=new Thickness(0,0,0,32) }; 
+            //EventsArea.Children.Add(EventFrame);
+            return wrapppingFrame;
         }
         private System.Drawing.Color GenColor() {
             Random rand = new Random();
@@ -226,7 +312,29 @@ namespace AllianceDivisionApp {
             return stream;
         }
 
+        private void RounBtn_Clicked(object sender, EventArgs e) {
 
+            if (Navigation.ModalStack.Any(obj => obj is PopUpForm)) {
+                PopupNavigation.Instance.PopAsync(true);
+            }
+            else { 
+                popupRef = new PopUpForm();
+                popupRef.getAddBtn().Clicked += AddEvent;
+                PopupNavigation.Instance.PushAsync(popupRef);
+            }
+        }
+    }
+
+    public class OnlineUser { 
+        public string name { get; set;}
+        public string comment { get; set; }
+        public DateTime onlineSince { get; set; }
+        public string Since { get; set; }
+        public void setDateString() {
+            TimeSpan span = DateTime.Now.Subtract(onlineSince);
+            double total = span.TotalMinutes;
+            Since = total < 1 ? "Less than 1 minute" : (int)total + " minutes online";    
+        }
     }
     public class Message {
         public string author { get; set; }

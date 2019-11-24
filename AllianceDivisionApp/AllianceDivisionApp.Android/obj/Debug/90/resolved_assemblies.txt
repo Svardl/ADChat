@@ -24,6 +24,8 @@ C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\o
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\mscorlib.dll
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\Plugin.SimpleAudioPlayer.Abstractions.dll
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\Plugin.SimpleAudioPlayer.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\Rg.Plugins.Popup.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\Rg.Plugins.Popup.Droid.dll
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Buffers.dll
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Core.dll
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.dll
@@ -92,5 +94,13 @@ C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\o
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.ServiceModel.Internals.dll
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Web.Services.dll
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.IO.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Threading.Tasks.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Collections.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Diagnostics.Debug.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Reflection.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Threading.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Linq.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Runtime.Extensions.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Reflection.Extensions.dll
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\Mono.Security.dll
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Threading.Tasks.Extensions.dll

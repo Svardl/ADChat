@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="AllianceDivisionApp.PopUpForm"
+             x:Name="ThisPage"
+             BackgroundColor="Transparent"
+             BackgroundInputTransparent="True"
+             HasSystemPadding="False"
+             CloseWhenBackgroundIsClicked="true"
+                 >
+    
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" BackgroundColor="RoyalBlue"  >
+
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" >
+                <DatePicker x:Name="ChosenDate" Format="D"  />
+                <TimePicker x:Name="ChosenTime" Format="HH:mm" />
+            </StackLayout >
+            <Editor x:Name="EventEditor" Placeholder="Describe the event" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" AutoSize="Disabled"  />
+            <Button x:Name="AddBtn"  Text="Add" BackgroundColor="RoyalBlue" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+
+    </StackLayout>
+</pages:PopupPage>

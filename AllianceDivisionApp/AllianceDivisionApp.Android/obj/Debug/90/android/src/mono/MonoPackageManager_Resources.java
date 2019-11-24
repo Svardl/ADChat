@@ -25,6 +25,8 @@ public class MonoPackageManager_Resources {
 		"Microsoft.Extensions.Primitives.dll",
 		"Plugin.SimpleAudioPlayer.Abstractions.dll",
 		"Plugin.SimpleAudioPlayer.dll",
+		"Rg.Plugins.Popup.dll",
+		"Rg.Plugins.Popup.Droid.dll",
 		"System.IO.Pipelines.dll",
 		"System.Text.Encodings.Web.dll",
 		"System.Text.Json.dll",

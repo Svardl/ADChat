@@ -6,7 +6,31 @@
              mc:Ignorable="d"
              x:Class="AllianceDivisionApp.TabbedPage1">
   <!--Pages can be added as references or inline-->
-    <ContentPage x:Name="Chat" Title="Chat" >
+    <ContentPage x:Name="Online" Title="Online" BackgroundColor="#4A5B64" >
+        <ContentPage.Content>
+            <StackLayout x:Name="OnlineFrame" VerticalOptions="Start">
+                <ListView x:Name="OnlineList" HorizontalOptions="Center" VerticalOptions="StartAndExpand" HasUnevenRows="True" ItemsSource= "{Binding ObActiveUsers}" >
+                    <ListView.Header >
+                        <ContentView Padding="0,5" BackgroundColor="#4A5B64" >
+                            <Label FontSize="Large" TextColor="BlueViolet" Text="Online" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,0,30"/>
+                        </ContentView>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <ViewCell >
+                                <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                                    <Label Text = "{Binding name}" FontSize="24" TextColor="Green" HorizontalTextAlignment="Center" />
+                                    <Label Text = "{Binding Since}" FontSize="14" TextColor="Blue" HorizontalTextAlignment="Center" />
+                                    <!-- Please note  here  -->
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage x:Name="Chat" Title="Chat" BackgroundColor="#4A5B64" >
         <ContentPage.Content>
             <StackLayout>
                 <Button x:Name="ConnectsBtn"  Text="Connect" BackgroundColor="RoyalBlue"  />
@@ -24,32 +48,21 @@
         </ContentPage.Content>
     </ContentPage>
 
-    <ContentPage x:Name="stats" Title="Your stats" />
-    <ContentPage x:Name="events" Title="Upcoming events" >
+    <ContentPage x:Name="stats" Title="Your stats" BackgroundColor="#4A5B64"/>
+    <ContentPage x:Name="events" Title="Upcoming events" BackgroundColor="#4A5B64" >
         <ContentPage.Content>
-            <StackLayout>
-                <Button x:Name="RefreshBtn" Text="Refresh" BackgroundColor="RoyalBlue" VerticalOptions="Start"/>
+            <StackLayout Margin="0,0,0,36">
                 <Label x:Name="noFriends" Text="No events, fake friends" VerticalOptions="Start" HorizontalOptions="Center" FontSize="Title"/>
                 <ScrollView x:Name="ScrollWindow2" VerticalOptions="StartAndExpand">
-                    <StackLayout x:Name="EventsArea" VerticalOptions="StartAndExpand">
-                    
-                  
+                    <StackLayout x:Name="EventsArea" VerticalOptions="StartAndExpand" Margin="34,0,34,0">
+
+
                     </StackLayout>
                 </ScrollView>
-                <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" BackgroundColor="RoyalBlue"  >
-                    <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="Center" >
-                        <DatePicker x:Name="ChosenDate" Format="D"  />
-                        <TimePicker x:Name="ChosenTime" Format="HH:mm" />
-                    </StackLayout >
-                    <Editor x:Name="EventEditor" Placeholder="Describe the event" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" AutoSize="Disabled"  />
-                    <Button x:Name="AddBtn"  Text="Add" BackgroundColor="RoyalBlue" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"/>
-                </StackLayout>
-            </StackLayout> 
-            
+               
+                <Button x:Name="RounBtn"  Text="+" HeightRequest="80" WidthRequest="80" CornerRadius="47" BackgroundColor="#4BA2C7" TextColor="#4A5B64" HorizontalOptions="Center" FontSize="45" Clicked="RounBtn_Clicked"/>
+            </StackLayout>
         </ContentPage.Content>
-        
     </ContentPage>         
-               
-               
-  
+
 </TabbedPage>

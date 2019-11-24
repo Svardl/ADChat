@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nirrr\\Documents\\ADChat\\Backboy\\Backboy.csproj": {}
+    "C:\\Users\\nisv\\Documents\\ADChat\\Backboy\\Backboy.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nirrr\\Documents\\ADChat\\Backboy\\Backboy.csproj": {
+    "C:\\Users\\nisv\\Documents\\ADChat\\Backboy\\Backboy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nirrr\\Documents\\ADChat\\Backboy\\Backboy.csproj",
+        "projectUniqueName": "C:\\Users\\nisv\\Documents\\ADChat\\Backboy\\Backboy.csproj",
         "projectName": "Backboy",
-        "projectPath": "C:\\Users\\nirrr\\Documents\\ADChat\\Backboy\\Backboy.csproj",
-        "packagesPath": "C:\\Users\\nirrr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nirrr\\Documents\\ADChat\\Backboy\\obj\\",
+        "projectPath": "C:\\Users\\nisv\\Documents\\ADChat\\Backboy\\Backboy.csproj",
+        "packagesPath": "C:\\Users\\nisv\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nisv\\Documents\\ADChat\\Backboy\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\nirrr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nisv\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -42,6 +41,12 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.AspNetCore.SignalR.Core": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
