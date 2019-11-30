@@ -228,3 +228,7 @@ C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\obj\i
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\iPhoneSimulator\Debug\Plugin.SimpleAudioPlayer.Abstractions.dll
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\iPhoneSimulator\Debug\Plugin.SimpleAudioPlayer.Abstractions.pdb
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\iPhoneSimulator\Debug\Plugin.SimpleAudioPlayer.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\iPhoneSimulator\Debug\Rg.Plugins.Popup.IOS.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\iPhoneSimulator\Debug\Rg.Plugins.Popup.IOS.pdb
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\iPhoneSimulator\Debug\Rg.Plugins.Popup.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\iPhoneSimulator\Debug\Rg.Plugins.Popup.pdb

@@ -15,13 +15,14 @@
                 <Label x:Name="AdressLab" Text="Bottersonstreet 23, 184 12 Stockholm" TextColor="White" FontSize="14"/>
 
             </StackLayout>
-            
+
+            <Button Text="Remove Event" x:Name="RemoveBtn" AbsoluteLayout.LayoutBounds="1,.4,.4,.09" AbsoluteLayout.LayoutFlags="All"/>
             <StackLayout x:Name="DescriptionStack" AbsoluteLayout.LayoutBounds="0,.4,1,.3" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="StartAndExpand">
-                <Label Text="Description" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+                <Label Text="Description" TextColor="White" FontSize="20" FontAttributes="Bold" Margin="0,0,50,0"/>
             </StackLayout>
             
-            <Button AbsoluteLayout.LayoutBounds="0,.7,.4,.06" AbsoluteLayout.LayoutFlags="All" Text="Attending" TextColor="#4DB6AC" BorderColor="#4DB6AC" BorderWidth="2" CornerRadius="8" BackgroundColor="#4A5B64"/>
-            <Button AbsoluteLayout.LayoutBounds="1,.7,.4,.06" AbsoluteLayout.LayoutFlags="All" Text="Decline" TextColor="#EA596E" BorderColor="#EA596E" BorderWidth="2" CornerRadius="8" BackgroundColor= "#4A5B64"/>
+            <Button Clicked="AttendingBtn_Clicked" x:Name="AttendingBtn" AbsoluteLayout.LayoutBounds="0,.7,.4,.06" AbsoluteLayout.LayoutFlags="All" Text="Attending" TextColor="#4DB6AC" BorderColor="#4DB6AC" BorderWidth="2" CornerRadius="8" BackgroundColor="#4A5B64"/>
+            <Button Clicked="DeclineBtn_Clicked" x:Name="DeclineBtn" AbsoluteLayout.LayoutBounds="1,.7,.4,.06" AbsoluteLayout.LayoutFlags="All" Text="Decline" TextColor="#EA596E" BorderColor="#EA596E" BorderWidth="2" CornerRadius="8" BackgroundColor= "#4A5B64"/>
 
         </AbsoluteLayout>
     </ContentPage.Content>

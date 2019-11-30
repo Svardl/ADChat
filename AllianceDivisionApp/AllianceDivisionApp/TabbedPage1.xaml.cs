@@ -25,7 +25,12 @@ namespace AllianceDivisionApp {
         //public IList<string> activeUsers { get; set; }
         public ObservableCollection<OnlineUser> ObActiveUsers = new ObservableCollection<OnlineUser>();
         PopUpForm popupRef;
-        
+        List<Message> EventsList = new List<Message>();
+        TwoWay twoWay = new TwoWay();
+        int LastId;
+        Dictionary<int, List<string>> attending = new Dictionary<int, List<string>>();
+        Dictionary<int, List<string>> declined = new Dictionary<int, List<string>>();
+
 
         public TabbedPage1(string name) {
             InitializeComponent();
@@ -98,12 +103,13 @@ namespace AllianceDivisionApp {
             hubConnection.On<Message, int>("AddEvent", (evObj, index) => {
                 Label test = new Label() {Text=DateToString(evObj.time)};
                 noFriends.Text = "";
-                Frame frame = createEventCell(evObj.author, evObj.message, evObj.time, Color.DarkBlue);
-                EventsArea.Children.Insert(index ,frame);
+                Frame frame = createEventCell(evObj.author, evObj.message, evObj.time, Color.DarkBlue, evObj.R);
+                twoWay.Add(evObj.R, frame);
+                
+                EventsArea.Children.Insert(index, frame);
             });
 
             hubConnection.On<List<Message>, bool, Message>("activeUserList", (activeUsers, added, who) => {
-
                 if (added){
                     addToOnlineTab(activeUsers, who);
                 }
@@ -111,6 +117,26 @@ namespace AllianceDivisionApp {
                     removeFromOnlineTab(activeUsers,who);
                 }
             });
+
+            hubConnection.On<List<Message>>("EventsFromServer", (activeEvents) => {
+                foreach (Message ev in activeEvents) {
+                    Frame frame = createEventCell(ev.author, ev.message, ev.time, Color.DarkBlue, ev.R);
+                    twoWay.Add(ev.R, frame);
+                    EventsArea.Children.Add(frame);
+                }
+            });
+            hubConnection.On<int>("RemoveEvent", (eventId) => {
+                Frame frame = twoWay.GetFrame(eventId);
+                EventsArea.Children.Remove(frame);
+              
+            });
+
+            hubConnection.On< Dictionary<int, List<string>>, Dictionary<int, List<string>>>("UpdateAttendingEvent", (attending, declined) => {
+                this.attending = attending;
+                this.declined = declined;
+            });
+
+
         }
         private void addToOnlineTab(List<Message> active, Message user) {
             if (user.author.Equals(name)) {
@@ -137,7 +163,6 @@ namespace AllianceDivisionApp {
         }
         private string DateToString(DateTime time) {
             string minute = time.Minute < 10 ? minute = "0" + time.Minute.ToString() : time.Minute.ToString();
-           
             return (time.Date.ToLongDateString()+" "+time.Hour+":"+minute);
         }
 
@@ -155,12 +180,8 @@ namespace AllianceDivisionApp {
         }
 
         private async void toggleBtn(object sender, EventArgs e) {
-            if (isConnected) {
-                await Disconnect();   
-            }
-            else {
-                await Connect();
-            }
+            if (isConnected) {await Disconnect();}
+            else {await Connect();}
         }
         async Task Disconnect() {
             try {
@@ -179,8 +200,6 @@ namespace AllianceDivisionApp {
             if (isConnected) {
                 var stream = GetStreamFromFile("sent.mp3");
                 player.Load(stream);
-                player.Play();
-
                 await hubConnection.InvokeAsync("SendMessage", user, message, (int)cellColor.R, (int)cellColor.G, (int)cellColor.B);
             }
             else {
@@ -223,7 +242,7 @@ namespace AllianceDivisionApp {
 
         private void createMessageCell(string user, string message, System.Drawing.Color color) {
             
-            Label MessageText = new Label() {FontSize=18, Text=message, HorizontalTextAlignment= user.Equals(name)? TextAlignment.End : TextAlignment.Start, TextColor = Color.Black};
+            Label MessageText = new Label() {FontSize=18, Text=message, HorizontalTextAlignment= user.Equals(name)? TextAlignment.End : TextAlignment.Start, TextColor = Color.White};
             Frame MessageFrame = new Frame() {
                 BackgroundColor = color,
                 Padding = 10,
@@ -237,17 +256,15 @@ namespace AllianceDivisionApp {
                 MessageFrame.Margin = new Thickness(70, 10, 10, 10);
             }
             MessageEditor.Text = "";
-
             ChatArea.Children.Add(MessageFrame);
         }
-        private Frame createEventCell(string user, string title, DateTime time, System.Drawing.Color color)
+        private Frame createEventCell(string user, string title, DateTime time, System.Drawing.Color color, int id)
         {
             string dateString = DateToString(time);
             string shortString= String.Format("{0:m}", time);
             Label MessageText = new Label() { FontSize = 18, Text = title, HorizontalTextAlignment = TextAlignment.Center , TextColor= Color.White, Margin= new Thickness(0,24,0,32)};
             Label DateLab = new Label() { FontSize = 18, Text = shortString, HorizontalTextAlignment = TextAlignment.Center, TextColor= Color.White, Margin=new Thickness(0,16,0,16) };
 
-           
             Color bodyCol = Color.FromHex("#5A5A5A");
             Color headerCOl = Color.FromHex("#4BA2C7");
 
@@ -284,17 +301,33 @@ namespace AllianceDivisionApp {
             };
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += (s, e) => {
+                LastId = id;
 
-                Navigation.PushModalAsync(new EventPage(title, time));
+                List<string> atte = null;
+                List<string> decl = null;
+
+                if (attending.ContainsKey(LastId) && declined.ContainsKey(LastId)) {
+                    atte = attending[LastId];
+                    decl = declined[LastId];
+                }
+                EventPage ep = new EventPage(title, time, user, name, LastId, hubConnection, atte, decl);
+                ep.getRemoveBtn().Clicked += RemoveEvent;
+                Navigation.PushModalAsync(ep);
 
             };
             EventFrame.GestureRecognizers.Add(tapGestureRecognizer);
 
-            Frame wrapppingFrame = new Frame() { HasShadow = false, CornerRadius = 6, Padding = 2,
+            Frame wrapppingFrame = new Frame() {HasShadow = false, CornerRadius = 6, Padding = 2,
                 BackgroundColor = headerCOl, Content = EventFrame, Margin=new Thickness(0,0,0,32) }; 
             //EventsArea.Children.Add(EventFrame);
             return wrapppingFrame;
         }
+
+        private async void RemoveEvent(object sender, EventArgs e) {
+            await hubConnection.InvokeAsync("RemoveEvent", LastId);
+            await Navigation.PopModalAsync();
+        }
+
         private System.Drawing.Color GenColor() {
             Random rand = new Random();
             System.Drawing.Color col;
@@ -314,15 +347,45 @@ namespace AllianceDivisionApp {
 
         private void RounBtn_Clicked(object sender, EventArgs e) {
 
-            if (Navigation.ModalStack.Any(obj => obj is PopUpForm)) {
-                PopupNavigation.Instance.PopAsync(true);
+            popupRef = new PopUpForm();
+            popupRef.getAddBtn().Clicked += AddEvent;
+            PopupNavigation.Instance.PushAsync(popupRef);
+        }
+    }
+
+    public class TwoWay {
+
+        private Dictionary<int, Frame> idFrame;
+        private Dictionary<Frame, int> FrameId;
+
+        public TwoWay() {
+            idFrame = new Dictionary<int, Frame>();
+            FrameId = new Dictionary<Frame, int>();
+        }
+        public void Add(int id , Frame frame) {
+            idFrame.Add(id, frame);
+            FrameId.Add(frame, id);
+        }
+
+        public void Remove(int? id = null, Frame frame = null) {
+            if (id == null) {
+                id = FrameId[frame];
+                FrameId.Remove(frame);
+                idFrame.Remove((int)id);
             }
-            else { 
-                popupRef = new PopUpForm();
-                popupRef.getAddBtn().Clicked += AddEvent;
-                PopupNavigation.Instance.PushAsync(popupRef);
+            else {
+                frame = idFrame[(int)id];
+                idFrame.Remove((int)id);
+                FrameId.Remove(frame);
             }
         }
+        public Frame GetFrame(int id) {
+            return idFrame[id];
+        }
+        public int getId(Frame frame) {
+            return FrameId[frame]; 
+        }
+
     }
 
     public class OnlineUser { 

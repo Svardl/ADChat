@@ -1715,3 +1715,4 @@ C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\o
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\System.Threading.Tasks.dll
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\src\md54c2b093f5c3df46aefa5ba5513ac1fa4\RgGestureDetectorListener.java
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\src\md5b5cbf9a5f989abac95309328170a059b\PopupPageRenderer.java
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.Android\obj\Debug\90\android\assets\Mono.Android.pdb

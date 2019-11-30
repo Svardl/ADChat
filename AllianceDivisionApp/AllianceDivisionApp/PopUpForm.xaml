@@ -8,20 +8,17 @@
              BackgroundColor="Transparent"
              BackgroundInputTransparent="True"
              HasSystemPadding="False"
-             CloseWhenBackgroundIsClicked="true"
+             CloseWhenBackgroundIsClicked="true" 
                  >
-    
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand" BackgroundColor="RoyalBlue"  >
 
 
+    <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White"  >
             <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" >
                 <DatePicker x:Name="ChosenDate" Format="D"  />
                 <TimePicker x:Name="ChosenTime" Format="HH:mm" />
             </StackLayout >
             <Editor x:Name="EventEditor" Placeholder="Describe the event" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" AutoSize="Disabled"  />
             <Button x:Name="AddBtn"  Text="Add" BackgroundColor="RoyalBlue" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"/>
-        </StackLayout>
+     </StackLayout>
 
-    </StackLayout>
 </pages:PopupPage>

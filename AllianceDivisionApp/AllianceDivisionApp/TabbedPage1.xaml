@@ -12,7 +12,7 @@
                 <ListView x:Name="OnlineList" HorizontalOptions="Center" VerticalOptions="StartAndExpand" HasUnevenRows="True" ItemsSource= "{Binding ObActiveUsers}" >
                     <ListView.Header >
                         <ContentView Padding="0,5" BackgroundColor="#4A5B64" >
-                            <Label FontSize="Large" TextColor="BlueViolet" Text="Online" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,0,30"/>
+                            <Label FontSize="Large" TextColor="White" Text="Online" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,0,0,30"/>
                         </ContentView>
                     </ListView.Header>
                     <ListView.ItemTemplate>
@@ -40,15 +40,13 @@
                     </StackLayout>
                 </ScrollView>
                 <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand"  >
-                    <Editor x:Name="MessageEditor" Placeholder="Type a message..." VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" AutoSize="Disabled"  />
+                    <Editor x:Name="MessageEditor" TextColor="White" Placeholder="Type a message..." VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" AutoSize="Disabled"  />
                     <Button x:Name="Send"  Text="Send" BackgroundColor="RoyalBlue" />
                 </StackLayout>
             </StackLayout>
 
         </ContentPage.Content>
     </ContentPage>
-
-    <ContentPage x:Name="stats" Title="Your stats" BackgroundColor="#4A5B64"/>
     <ContentPage x:Name="events" Title="Upcoming events" BackgroundColor="#4A5B64" >
         <ContentPage.Content>
             <StackLayout Margin="0,0,0,36">
@@ -63,6 +61,7 @@
                 <Button x:Name="RounBtn"  Text="+" HeightRequest="80" WidthRequest="80" CornerRadius="47" BackgroundColor="#4BA2C7" TextColor="#4A5B64" HorizontalOptions="Center" FontSize="45" Clicked="RounBtn_Clicked"/>
             </StackLayout>
         </ContentPage.Content>
-    </ContentPage>         
+    </ContentPage>
+    <ContentPage x:Name="Settings" Title="Settings" BackgroundColor="#4A5B64"/>
 
 </TabbedPage>

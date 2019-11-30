@@ -12,6 +12,9 @@ namespace Backboy.Hubs
         static List<Message> Msg = new List<Message>();
         static List<Message> Events = new List<Message>();
         static List<Message> Online = new List<Message>();
+        static int EventId = 0;
+        static Dictionary<int, List<string>> attending = new Dictionary<int, List<string>>();
+        static Dictionary<int, List<string>> declined = new Dictionary<int, List<string>>();
 
         public async Task JoinChat(string user) {
 
@@ -25,12 +28,13 @@ namespace Backboy.Hubs
             else {
                 Online.FirstOrDefault(person => person.author.Equals(user)).message = connectionID;
                 Online.FirstOrDefault(person => person.author.Equals(user)).time = DateTime.Now;
-
             }
 
             await Clients.All.SendAsync("JoinChat", user);
             await Clients.Caller.SendAsync("ChatHistory", Msg);
             await Clients.All.SendAsync("activeUserList", Online, true, newEntry);
+            //await Clients.Caller.SendAsync("UpdateAttendingEvent",attending, declined);
+
         }
 
         public override async Task OnDisconnectedAsync(Exception ex) {
@@ -58,10 +62,48 @@ namespace Backboy.Hubs
         }
 
         public async Task AddEvent(string user, string message, DateTime dt) {
-            Message eventboy = new Message() {author = user, message = message, time = dt };
+            Message eventboy = new Message() {author = user, message = message, time = dt, R=EventId };
+            
             int ind = insertDate(eventboy);
             Events.Insert(ind, eventboy);
+            attending.Add(EventId, new List<string>());
+            declined.Add(EventId, new List<string>());
+            EventId++;
             await Clients.All.SendAsync("AddEvent", eventboy, ind);
+        }
+
+        public async Task RemoveEvent(int eventId) {
+
+            var removed = Events.FirstOrDefault(ev =>ev.R == eventId);
+
+            if (removed != null) {
+                Events.Remove(removed);
+                attending.Remove(eventId);
+                declined.Remove(eventId);
+                await Clients.All.SendAsync("RemoveEvent", eventId);
+            }
+        }
+
+        public async Task AttendEvent(string user, int eventId) {
+            if (declined.ContainsKey(eventId) && declined[eventId].Any(u => u.Equals(user))) {
+                declined[eventId].Remove(declined[eventId].First(u => u.Equals(user)));   
+            }
+
+            if (attending.ContainsKey(eventId)) {
+                attending[eventId].Add(user);
+            }
+            await Clients.All.SendAsync("UpdateAttendingEvent", attending, declined);
+        }
+
+        public async Task DeclineEvent(string user, int eventId) {
+            if (attending.ContainsKey(eventId) && attending[eventId].Any(u => u.Equals(user))) {
+                attending[eventId].Remove(attending[eventId].First(u => u.Equals(user)));
+            }
+
+            if (declined.ContainsKey(eventId)) {
+                declined[eventId].Add(user);
+            }
+            await Clients.All.SendAsync("UpdateAttendingEvent", attending, declined);
         }
 
 
