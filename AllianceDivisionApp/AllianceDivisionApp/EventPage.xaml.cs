@@ -13,17 +13,16 @@ namespace AllianceDivisionApp {
     public partial class EventPage : ContentPage {
         string title;
         DateTime time;
-        string user;
+        string name;
         HubConnection hubConnection;
+        int id;
         public EventPage(string title, DateTime time, string eventCreator, string name, int id, HubConnection hubConnection, List<string> attedningList, List<string> declinedList ) {
             InitializeComponent();
             if (!name.Equals(eventCreator)) {
                 RemoveBtn.IsVisible = false;
             }
-            this.hubConnection = hubConnection;
-            this.user = name;
-            this.title = title;
-            this.time = time;
+            //this.hubConnection = hubConnection;
+            this.name = name;
 
             TitelLab.Text = title;
 
@@ -34,26 +33,49 @@ namespace AllianceDivisionApp {
             DateLab.Text += "   -   "+ hour+ ":" + minute;
             AdressLab.Text = "";
 
-            foreach (string thing in attedningList) {
-                TitleTimeStack.Children.Add(new Label() { Text = thing });
+            updateAttedningStack(attedningList, declinedList);
+        }
+
+        public void updateAttedningStack(List<string> attedningList, List<string> declinedList) {
+
+            AttedningStack.Children.Clear();
+
+            if (attedningList != null) {
+                foreach (string thing in attedningList) {
+                    AttedningStack.Children.Add(new Label() { Text = thing, TextColor = Color.FromHex("#4DB6AC"), FontSize=20 });
+                }
+                if (attedningList.Contains(name)) {
+                    AttendingBtn.IsEnabled = false;
+                }
+            }
+            if (declinedList != null) {
+                foreach (string declinedUser in declinedList) {
+                    AttedningStack.Children.Add(new Label() { Text = declinedUser, TextColor = Color.FromHex("#EA596E"), FontSize = 20 });
+                }
+                if (declinedList.Contains(name)) {
+                    DeclineBtn.IsEnabled = false;
+                }
             }
 
         }
         public Button getRemoveBtn() {
             return RemoveBtn;
         }
-
-        private async void AttendingBtn_Clicked(object sender, EventArgs e) {
-            AttendingBtn.IsEnabled = false;
-            DeclineBtn.IsEnabled = true;
-            await hubConnection.InvokeAsync("AttendEvent", user, Id);
+        public Button getDeclineBtn() {
+            return DeclineBtn;
+        }
+        public Button getAttendBtn() {
+            return AttendingBtn;
         }
 
-        private async void DeclineBtn_Clicked(object sender, EventArgs e) {
-            AttendingBtn.IsEnabled = true;
-            DeclineBtn.IsEnabled = false;
-            await hubConnection.InvokeAsync("DeclineEvent", user, Id);
+        private void AttendingBtn_Clicked_1(object sender, EventArgs e) {
+            AttendingBtn.IsEnabled = false;
+            DeclineBtn.IsEnabled = true;
+        }
 
+        private void DeclineBtn_Clicked_1(object sender, EventArgs e) {
+            DeclineBtn.IsEnabled = false;
+            AttendingBtn.IsEnabled = true;
         }
     }
 }

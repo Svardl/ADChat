@@ -2,7 +2,6 @@ C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\bin\Debu
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\bin\Debug\netstandard2.0\AllianceDivisionApp.dll
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\bin\Debug\netstandard2.0\ref\AllianceDivisionApp.dll
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\bin\Debug\netstandard2.0\AllianceDivisionApp.pdb
-C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\AllianceDivisionApp.csprojAssemblyReference.cache
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
 C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\TabbedPage1.xaml.g.cs
@@ -16,7 +15,6 @@ C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\bin\Debug
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\bin\Debug\netstandard2.0\AllianceDivisionApp.dll
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\bin\Debug\netstandard2.0\ref\AllianceDivisionApp.dll
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\bin\Debug\netstandard2.0\AllianceDivisionApp.pdb
-C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\AllianceDivisionApp.csprojAssemblyReference.cache
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\TabbedPage1.xaml.g.cs
@@ -28,3 +26,7 @@ C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\EventPage.xaml.g.cs
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\PopUpForm.xaml.g.cs
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\EventPage.xaml.g.cs
+C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\PopUpForm.xaml.g.cs
+C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\AllianceDivisionApp.csprojAssemblyReference.cache
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Debug\netstandard2.0\AllianceDivisionApp.csprojAssemblyReference.cache

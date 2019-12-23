@@ -12,13 +12,15 @@
                  >
 
 
-    <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White"  >
+    <Frame CornerRadius="8" IsClippedToBounds="True" VerticalOptions="Center" HorizontalOptions="Center">
+        <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White"  >
             <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" >
                 <DatePicker x:Name="ChosenDate" Format="D"  />
                 <TimePicker x:Name="ChosenTime" Format="HH:mm" />
             </StackLayout >
-            <Editor x:Name="EventEditor" Placeholder="Describe the event" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" AutoSize="Disabled"  />
-            <Button x:Name="AddBtn"  Text="Add" BackgroundColor="RoyalBlue" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"/>
-     </StackLayout>
+            <Entry MaxLength="35" x:Name="EventEditor" Placeholder="Enter event title" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" />
+            <Button x:Name="AddBtn"  Text="Add" BackgroundColor="#4BA2C7" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+    </Frame>
 
 </pages:PopupPage>

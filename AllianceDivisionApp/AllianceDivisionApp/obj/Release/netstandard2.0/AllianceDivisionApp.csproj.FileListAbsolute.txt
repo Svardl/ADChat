@@ -1,0 +1,16 @@
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\bin\Release\netstandard2.0\AllianceDivisionApp.deps.json
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\bin\Release\netstandard2.0\AllianceDivisionApp.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\bin\Release\netstandard2.0\ref\AllianceDivisionApp.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\bin\Release\netstandard2.0\AllianceDivisionApp.pdb
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Release\netstandard2.0\App.xaml.g.cs
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Release\netstandard2.0\EventPage.xaml.g.cs
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Release\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Release\netstandard2.0\PopUpForm.xaml.g.cs
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Release\netstandard2.0\TabbedPage1.xaml.g.cs
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Release\netstandard2.0\AllianceDivisionApp.AssemblyInfoInputs.cache
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Release\netstandard2.0\AllianceDivisionApp.AssemblyInfo.cs
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Release\netstandard2.0\XamlC.stamp
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Release\netstandard2.0\AllianceDivisionApp.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Release\netstandard2.0\ref\AllianceDivisionApp.dll
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Release\netstandard2.0\AllianceDivisionApp.pdb
+C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp\obj\Release\netstandard2.0\AllianceDivisionApp.csprojAssemblyReference.cache

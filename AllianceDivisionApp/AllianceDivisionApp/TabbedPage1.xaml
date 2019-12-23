@@ -19,8 +19,8 @@
                         <DataTemplate >
                             <ViewCell >
                                 <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
-                                    <Label Text = "{Binding name}" FontSize="24" TextColor="Green" HorizontalTextAlignment="Center" />
-                                    <Label Text = "{Binding Since}" FontSize="14" TextColor="Blue" HorizontalTextAlignment="Center" />
+                                    <Label Text = "{Binding name}" FontSize="24" TextColor="LightGreen" HorizontalTextAlignment="Center" />
+                                    <Label Text = "{Binding Since}" FontSize="16" TextColor="DeepSkyBlue" HorizontalTextAlignment="Center" />
                                     <!-- Please note  here  -->
                                 </StackLayout>
                             </ViewCell>
@@ -33,7 +33,7 @@
     <ContentPage x:Name="Chat" Title="Chat" BackgroundColor="#4A5B64" >
         <ContentPage.Content>
             <StackLayout>
-                <Button x:Name="ConnectsBtn"  Text="Connect" BackgroundColor="RoyalBlue"  />
+                <Button x:Name="ConnectsBtn"  Text="Connect" BackgroundColor="#4BA2C7"  />
                 <ScrollView x:Name="ScrollWindow">
                     <StackLayout x:Name="ChatArea" Orientation="Vertical">
                     
@@ -41,7 +41,9 @@
                 </ScrollView>
                 <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand"  >
                     <Editor x:Name="MessageEditor" TextColor="White" Placeholder="Type a message..." VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" AutoSize="Disabled"  />
-                    <Button x:Name="Send"  Text="Send" BackgroundColor="RoyalBlue" />
+                    <Frame IsClippedToBounds="true" Padding="1" CornerRadius="5" BorderColor="#4BA2C7" HasShadow="False">
+                        <Button x:Name="Send"  Text="Send" BackgroundColor="#4BA2C7" />
+                    </Frame>
                 </StackLayout>
             </StackLayout>
 
@@ -54,14 +56,21 @@
                 <ScrollView x:Name="ScrollWindow2" VerticalOptions="StartAndExpand">
                     <StackLayout x:Name="EventsArea" VerticalOptions="StartAndExpand" Margin="34,0,34,0">
 
-
                     </StackLayout>
                 </ScrollView>
-               
-                <Button x:Name="RounBtn"  Text="+" HeightRequest="80" WidthRequest="80" CornerRadius="47" BackgroundColor="#4BA2C7" TextColor="#4A5B64" HorizontalOptions="Center" FontSize="45" Clicked="RounBtn_Clicked"/>
+                <Button x:Name="RounBtn"  Text="+" HeightRequest="80" WidthRequest="80" CornerRadius="40" Padding="0" BackgroundColor="#4BA2C7" TextColor="#4A5B64" HorizontalOptions="Center" FontSize="40" Clicked="RounBtn_Clicked" />
             </StackLayout>
         </ContentPage.Content>
     </ContentPage>
-    <ContentPage x:Name="Settings" Title="Settings" BackgroundColor="#4A5B64"/>
+    <ContentPage x:Name="Settings" Title="Settings" BackgroundColor="#4A5B64">
+        <ContentPage.Content >
+            <StackLayout Margin="25,25,25,25">
+                <Frame HorizontalOptions="CenterAndExpand" IsClippedToBounds="true" Padding="1" CornerRadius="5" BorderColor="#4BA2C7" HasShadow="False" BackgroundColor="#4BA2C7" >
+                    <Button Text="Logout" BackgroundColor="#4BA2C7" TextColor="White" Margin="20,0,20,0" Clicked="Logout_Clicked"/>
+                </Frame>
+            </StackLayout>
+            
+        </ContentPage.Content>
 
+    </ContentPage>
 </TabbedPage>

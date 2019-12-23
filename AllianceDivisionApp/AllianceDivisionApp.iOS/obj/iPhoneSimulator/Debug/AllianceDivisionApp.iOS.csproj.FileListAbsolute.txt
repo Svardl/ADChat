@@ -232,3 +232,7 @@ C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\i
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\iPhoneSimulator\Debug\Rg.Plugins.Popup.IOS.pdb
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\iPhoneSimulator\Debug\Rg.Plugins.Popup.dll
 C:\Users\nisv\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\iPhoneSimulator\Debug\Rg.Plugins.Popup.pdb
+C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\iPhoneSimulator\Debug\Rg.Plugins.Popup.IOS.dll
+C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\iPhoneSimulator\Debug\Rg.Plugins.Popup.IOS.pdb
+C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\iPhoneSimulator\Debug\Rg.Plugins.Popup.dll
+C:\Users\nirrr\Documents\ADChat\AllianceDivisionApp\AllianceDivisionApp.iOS\bin\iPhoneSimulator\Debug\Rg.Plugins.Popup.pdb

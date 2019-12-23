@@ -8,7 +8,6 @@ namespace Backboy.Hubs
 {
     public class ChatHub : Hub
     {
-
         static List<Message> Msg = new List<Message>();
         static List<Message> Events = new List<Message>();
         static List<Message> Online = new List<Message>();
@@ -18,7 +17,7 @@ namespace Backboy.Hubs
 
         public async Task JoinChat(string user) {
 
-            Events.Clear(); // remove in release
+            //Events.Clear(); // remove in release
             string connectionID = Context.ConnectionId;
 
             Message newEntry = new Message() { message = connectionID, author = user, time = DateTime.Now };
@@ -33,10 +32,24 @@ namespace Backboy.Hubs
             await Clients.All.SendAsync("JoinChat", user);
             await Clients.Caller.SendAsync("ChatHistory", Msg);
             await Clients.All.SendAsync("activeUserList", Online, true, newEntry);
-            //await Clients.Caller.SendAsync("UpdateAttendingEvent",attending, declined);
+            clearPassedEvents();
 
+            await Clients.Caller.SendAsync("EventHistory", Events);
+            foreach (int id in attending.Keys) {
+                await Clients.Caller.SendAsync("UpdateAttendingEvent", attending[id], declined[id], id);
+            }
         }
 
+        private void clearPassedEvents() {
+            for (int i = Events.Count-1; i>0; i--) {
+                if (Events[i].time.CompareTo(DateTime.Now.AddHours(3)) > 1) {
+                    Events.Remove(Events[i]);
+                    attending.Remove(Events[i].R);
+                    declined.Remove(Events[i].R);
+                }
+            }
+
+        }
         public override async Task OnDisconnectedAsync(Exception ex) {
 
             var connectionID = Context.ConnectionId;
@@ -44,15 +57,19 @@ namespace Backboy.Hubs
             var user = Online.FirstOrDefault(person => person.message.Equals(connectionID)).author;
             Message newEntry = new Message() { message = connectionID, author = user, time = DateTime.Now };
 
-            await Clients.All.SendAsync("activeUserList", Online, false, newEntry);
-
             Online.Remove(Online.FirstOrDefault(person => person.message.Equals(connectionID)));
-           
+
+            await Clients.All.SendAsync("activeUserList", Online, false, newEntry);
             await base.OnDisconnectedAsync(ex);
         
         }
 
         public async Task LeaveChat(string user) {
+
+            Message newEntry = new Message() { message = null, author = user, time = DateTime.Now };
+            Online.Remove(Online.FirstOrDefault(person => person.author.Equals(user)));
+
+            await Clients.All.SendAsync("activeUserList", Online, false, newEntry);
             await Clients.All.SendAsync("LeaveChat", user);
         }
 
@@ -85,25 +102,32 @@ namespace Backboy.Hubs
         }
 
         public async Task AttendEvent(string user, int eventId) {
+
             if (declined.ContainsKey(eventId) && declined[eventId].Any(u => u.Equals(user))) {
-                declined[eventId].Remove(declined[eventId].First(u => u.Equals(user)));   
+            declined[eventId].Remove(declined[eventId].First(u => u.Equals(user)));   
             }
+            List<string> attreturn = null;
+            List<string> decreturn = declined.ContainsKey(eventId) ? declined[eventId] : null;
 
             if (attending.ContainsKey(eventId)) {
                 attending[eventId].Add(user);
+                attreturn = attending[eventId];
             }
-            await Clients.All.SendAsync("UpdateAttendingEvent", attending, declined);
+            await Clients.All.SendAsync("UpdateAttendingEvent", attreturn, decreturn, eventId);
         }
 
         public async Task DeclineEvent(string user, int eventId) {
             if (attending.ContainsKey(eventId) && attending[eventId].Any(u => u.Equals(user))) {
                 attending[eventId].Remove(attending[eventId].First(u => u.Equals(user)));
             }
+            List<string> decreturn = null;
+            List<string> attreturn = attending.ContainsKey(eventId) ? attending[eventId] : null;
 
             if (declined.ContainsKey(eventId)) {
                 declined[eventId].Add(user);
+                decreturn = declined[eventId];
             }
-            await Clients.All.SendAsync("UpdateAttendingEvent", attending, declined);
+            await Clients.All.SendAsync("UpdateAttendingEvent", attreturn, decreturn, eventId);
         }
 
 

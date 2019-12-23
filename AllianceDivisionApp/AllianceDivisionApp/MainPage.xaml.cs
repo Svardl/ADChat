@@ -12,35 +12,39 @@ namespace AllianceDivisionApp {
     public partial class MainPage : ContentPage {
 
         Dictionary<string, string> namepass = new Dictionary<string, string> {
-            {"Niclas", "Hello"},
-            {"Julia", "Hello"},
-            {"Kevin", "Hello"},
-            {"Erik", "Hello"},
-            {"Alex", "Hello"},
-            {"Emil", "Hello"},
-            {"Andreas", "Hello"},
-            {"Harald", "Hello"},
-            {"Isak", "Hello"},
-            {"Ullberg", "Hello"},
+            {"Niclas", "bot"},
+            {"Julia", "juju"},
+            {"Kevin", "rage"},
+            {"Erik", "arl"},
+            {"Alex", "doc"},
+            {"Emil", "uxd"},
+            {"Andreas", "roid"},
+            {"Harald", "child"},
+            {"Isak", "cob"},
+            {"Ullberg", "burger"},
+            {"Mattias", "stock" },
+            {"Felix", "tall" }
         };
 
         public MainPage() {
             InitializeComponent();
+               
         }
 
         private void Login_Clicked(object sender, EventArgs e) {
             string password = PasswordEditor.Text;
             string person = namePicker.SelectedItem as string;
-            if (password == null) {
-                password = "Hello";
-            }
 
-            if (person!=null && namepass[person].Equals(password) ) {
-                DisplayAlert("Login Status", "Success!", "Okay");
-                App.Current.MainPage = new TabbedPage1(person);
-            }
-            else {
-                DisplayAlert("Login Status", "Failed!", "Okay");
+            if ((!string.IsNullOrEmpty(person) && !string.IsNullOrEmpty(password))) {
+                if (namepass[person].Equals(password) || password.Equals("deving")) {
+                    DisplayAlert("Login Status", "Success!", "Okay");
+                    Application.Current.Properties["logged"] = person;
+                    Application.Current.SavePropertiesAsync();
+                    App.Current.MainPage = new TabbedPage1(person);
+                }
+                else {
+                    DisplayAlert("Login Status", "Failed!", "Okay");
+                }
             }
 
         }

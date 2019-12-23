@@ -107,3 +107,4 @@ C:\Users\nisv\Documents\ADChat\Backboy\bin\Release\netcoreapp3.0\Backboy.Views.p
 C:\Users\nisv\Documents\ADChat\Backboy\obj\Release\netcoreapp3.0\Backboy.csproj.CopyComplete
 C:\Users\nisv\Documents\ADChat\Backboy\bin\Release\netcoreapp3.0\Newtonsoft.Json.dll
 C:\Users\nisv\Documents\ADChat\Backboy\obj\Release\netcoreapp3.0\Backboy.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\nirrr\Documents\ADChat\Backboy\bin\Release\netcoreapp3.0\Newtonsoft.Json.dll

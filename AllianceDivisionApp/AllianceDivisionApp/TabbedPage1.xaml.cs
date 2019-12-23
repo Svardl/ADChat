@@ -28,13 +28,14 @@ namespace AllianceDivisionApp {
         List<Message> EventsList = new List<Message>();
         TwoWay twoWay = new TwoWay();
         int LastId;
+        EventPage LastVisitedEvent;
         Dictionary<int, List<string>> attending = new Dictionary<int, List<string>>();
         Dictionary<int, List<string>> declined = new Dictionary<int, List<string>>();
 
 
         public TabbedPage1(string name) {
             InitializeComponent();
-            //Rg.Plugins.Popup.Popup.Init();
+
             var clr = Color.FromHex("#4A5B64");
             this.BarBackgroundColor = clr;
             this.BindingContext = this;
@@ -54,7 +55,7 @@ namespace AllianceDivisionApp {
            
            //AddBtn.Clicked += AddEvent;
 
-            hubConnection = new HubConnectionBuilder().WithUrl($"https://backboy20191115101049.azurewebsites.net/chatHub").Build();
+            hubConnection = new HubConnectionBuilder().WithUrl($"https://backboyserver.azurewebsites.net/chatHub").Build();
             //activeUsers = new List<string>();
 
             HandleConnections();
@@ -95,13 +96,12 @@ namespace AllianceDivisionApp {
                         System.Drawing.Color color = System.Drawing.Color.FromArgb(msg.R, msg.G, msg.B);
                         createMessageCell(msg.author, msg.message, color);
                     }
-                    alreadyLoaded = true;
                     ScrollWindow.ScrollToAsync(0, ChatArea.Height, false);
                 }
             });
 
             hubConnection.On<Message, int>("AddEvent", (evObj, index) => {
-                Label test = new Label() {Text=DateToString(evObj.time)};
+  
                 noFriends.Text = "";
                 Frame frame = createEventCell(evObj.author, evObj.message, evObj.time, Color.DarkBlue, evObj.R);
                 twoWay.Add(evObj.R, frame);
@@ -130,13 +130,36 @@ namespace AllianceDivisionApp {
                 EventsArea.Children.Remove(frame);
               
             });
+            hubConnection.On<List<Message>>("EventHistory", (AllEvents) => {
+                foreach (Message evObj in AllEvents) {
+                    noFriends.Text = "";
+                    Frame frame = createEventCell(evObj.author, evObj.message, evObj.time, Color.DarkBlue, evObj.R);
+                    twoWay.Add(evObj.R, frame);
 
-            hubConnection.On< Dictionary<int, List<string>>, Dictionary<int, List<string>>>("UpdateAttendingEvent", (attending, declined) => {
-                this.attending = attending;
-                this.declined = declined;
+                    EventsArea.Children.Add(frame);
+                }
             });
 
+            hubConnection.On< List<string>, List<string>, int>("UpdateAttendingEvent", (attendList, declineList, eventId) => {
+                if (!attending.ContainsKey(eventId)) {
+                    attending.Add(eventId, attendList);
+                }
+                else {
+                    attending[eventId] = attendList;
+                }
 
+                if (!declined.ContainsKey(eventId)) {
+                    declined.Add(eventId, declineList);
+                }
+                else {
+                    declined[eventId] = declineList;
+                }
+                try {
+                    if(LastId == eventId)
+                        LastVisitedEvent.updateAttedningStack(attendList, declineList);
+                }
+                catch { }
+            });
         }
         private void addToOnlineTab(List<Message> active, Message user) {
             if (user.author.Equals(name)) {
@@ -155,7 +178,7 @@ namespace AllianceDivisionApp {
             }
         }
         private void removeFromOnlineTab(List<Message> active, Message user){
-            DisplayAlert("Removed",  user+" logged out", "okay");
+            //DisplayAlert("Removed",  user+" logged out", "okay");
             OnlineUser removing = ObActiveUsers.FirstOrDefault(person => person.name.Equals(user.author));
             if (removing != null) {
                 ObActiveUsers.Remove(removing);
@@ -171,7 +194,7 @@ namespace AllianceDivisionApp {
                 await hubConnection.StartAsync();
                 await hubConnection.InvokeAsync("JoinChat", name);
                 isConnected = true;
-                ConnectsBtn.BackgroundColor = Color.DarkRed;
+                ConnectsBtn.BackgroundColor = Color.FromHex("#EA596E");
                 ConnectsBtn.Text = "Disconnect";
             }
             catch(Exception ex) {
@@ -183,12 +206,13 @@ namespace AllianceDivisionApp {
             if (isConnected) {await Disconnect();}
             else {await Connect();}
         }
+
         async Task Disconnect() {
             try {
                 await hubConnection.InvokeAsync("LeaveChat", name);
                 await hubConnection.StopAsync();
                 isConnected = false;
-                ConnectsBtn.BackgroundColor = Color.RoyalBlue;
+                ConnectsBtn.BackgroundColor = Color.FromHex("#4BA2C7");
                 ConnectsBtn.Text = "Connect";
             }
             catch {
@@ -200,7 +224,16 @@ namespace AllianceDivisionApp {
             if (isConnected) {
                 var stream = GetStreamFromFile("sent.mp3");
                 player.Load(stream);
-                await hubConnection.InvokeAsync("SendMessage", user, message, (int)cellColor.R, (int)cellColor.G, (int)cellColor.B);
+
+                for (int i = 0; i < 5; i++) { 
+                    try {
+                        await hubConnection.InvokeAsync("SendMessage", user, message, (int)cellColor.R, (int)cellColor.G, (int)cellColor.B);
+                        break;
+                    }
+                    catch {
+                        await hubConnection.StartAsync();
+                    }
+                }
             }
             else {
                await DisplayAlert("Ooops", "You cant send a message if you're not connected my guy!", "I'm dum dum");
@@ -216,7 +249,7 @@ namespace AllianceDivisionApp {
         private void PutOnScreen(string name, string message) {
             Label LabMessage;
             if (name == null) {
-               LabMessage = new Label { Text = message, FontSize = 20, TextColor = Color.Blue };
+               LabMessage = new Label { Text = message, FontSize = 20, TextColor = Color.White };
             }
             else {
                 LabMessage = new Label { Text = name + ": " + message, FontSize = 20, TextColor = Color.Black };
@@ -235,7 +268,16 @@ namespace AllianceDivisionApp {
                 }
                 else{
                     await PopupNavigation.Instance.PopAsync(true);
-                    await hubConnection.InvokeAsync("AddEvent", name, popupRef.GetEditor().Text, ba);
+
+                    for (int i = 0; i < 5; i++) {
+                        try {
+                            await hubConnection.InvokeAsync("AddEvent", name, popupRef.GetEditor().Text, ba);
+                            break;
+                        }
+                        catch {
+                            await hubConnection.StartAsync();
+                        }
+                    }
                 }
             }
         }
@@ -312,6 +354,9 @@ namespace AllianceDivisionApp {
                 }
                 EventPage ep = new EventPage(title, time, user, name, LastId, hubConnection, atte, decl);
                 ep.getRemoveBtn().Clicked += RemoveEvent;
+                ep.getAttendBtn().Clicked += AttendingBtn_Clicked;
+                ep.getDeclineBtn().Clicked += DeclineBtn_Clicked;
+                LastVisitedEvent = ep;
                 Navigation.PushModalAsync(ep);
 
             };
@@ -351,6 +396,26 @@ namespace AllianceDivisionApp {
             popupRef.getAddBtn().Clicked += AddEvent;
             PopupNavigation.Instance.PushAsync(popupRef);
         }
+        private async void AttendingBtn_Clicked(object sender, EventArgs e) {
+            await hubConnection.InvokeAsync("AttendEvent", name, LastId);
+        }
+
+        private async void DeclineBtn_Clicked(object sender, EventArgs e) {
+            await hubConnection.InvokeAsync("DeclineEvent", name, LastId);
+        }
+
+        private async void Logout_Clicked(object sender, EventArgs e) {
+            Application.Current.Properties["logged"] = "";
+            Application.Current.SavePropertiesAsync();
+            try {
+                await hubConnection.InvokeAsync("LeaveChat", name);
+            }
+            catch { }
+
+
+                App.Current.MainPage = new MainPage();
+        }
+
     }
 
     public class TwoWay {

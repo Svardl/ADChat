@@ -35,6 +35,7 @@
                             <x:String>Isak</x:String>
                             <x:String>Ullberg</x:String>
                             <x:String>Alex</x:String>
+                            <x:String>Mattias</x:String>
 
                         </x:Array>
                     </Picker.ItemsSource>

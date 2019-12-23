@@ -6,8 +6,11 @@ namespace AllianceDivisionApp {
     public partial class App : Application {
         public App() {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            if (Application.Current.Properties.ContainsKey("logged") && !string.IsNullOrEmpty(Application.Current.Properties["logged"].ToString())) {
+                MainPage = new TabbedPage1(Application.Current.Properties["logged"].ToString());
+            }
+            else
+                MainPage = new MainPage();
         }
 
         protected override void OnStart() {

@@ -15,7 +15,7 @@ namespace AllianceDivisionApp {
             InitializeComponent();
         }
 
-        public Editor GetEditor() { 
+        public Entry GetEditor() { 
             return EventEditor; 
         }
         public DatePicker GetChosenDate() {
